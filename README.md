@@ -29,7 +29,7 @@ Update system packages and ensure virtualenv is installed:
 
 Clone the Sentinel repo and install Python dependencies.
 
-    $ git clone https://github.com/nseritti/sentinel-tecax.git && cd sentinel-tecax
+    $ git clone https://github.com/deathromp/sentinel-tecax.git && cd sentinel-tecax
     $ virtualenv ./venv
     $ ./venv/bin/pip install -r requirements.txt
 
@@ -41,15 +41,7 @@ Set up a crontab entry to call Sentinel every minute:
 
 In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /home/YOURUSERNAME/sentinel-tecax && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
-
-### 4. Test the Configuration
-
-Test the config by runnings all tests from the sentinel folder you cloned into
-
-    $ ./venv/bin/py.test ./test
-
-With all tests passing and crontab setup, Sentinel will stay in sync with dashd and the installation is complete
+    * * * * * cd /home/YOURUSERNAME/.tecaxcore/sentinel-tecax && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
 ## Configuration
 
