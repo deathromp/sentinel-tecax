@@ -27,6 +27,18 @@ Update system packages and ensure virtualenv is installed:
 
 ### 2. Install Sentinel
 
+#### 2.1 Change to install target dir
+
+Change to your tecax data directory if tecaxd is running as root and using defaults:
+
+    $ cd /root/.tecaxcore
+
+Change to your tecax data directory if tecaxd is running as tecax user and using defaults:
+
+    $ cd /home/.tecaxcore
+
+#### 2.2 Clone and install sentinel
+
 Clone the Sentinel repo and install Python dependencies.
 
     $ git clone https://github.com/deathromp/sentinel-tecax.git && cd sentinel-tecax
@@ -35,21 +47,29 @@ Clone the Sentinel repo and install Python dependencies.
 
 ### 3. Set up Cron
 
-Set up a crontab entry to call Sentinel every minute:
+#### 3.1 Set up a crontab if running as root user with default data dir:
 
     $ crontab -e
 
 In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/sentinel' to the path where you cloned sentinel to:
 
-    * * * * * cd /home/YOURUSERNAME/.tecaxcore/sentinel-tecax && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+    * * * * * cd /root/.tecaxcore/sentinel-tecax && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
 
-## Configuration
+#### 3.2 Set up a crontab if running as tecax user with default data dir:
+
+    $ crontab -e
+
+In the crontab editor, add the lines below, replacing '/home/YOURUSERNAME/sentinel' to the path where you cloned sentinel to:
+
+    * * * * * cd /home/tecax/.tecaxcore/sentinel-tecax && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+
+## Configuration (optional if using default data dir)
 
 An alternative (non-default) path to the `tecax.conf` file can be specified in `sentinel.conf`:
 
     tecax_conf=/path/to/tecax.conf
 
-## Troubleshooting
+## Troubleshooting (optional
 
 To view debug output, set the `SENTINEL_DEBUG` environment variable to anything non-zero, then run the script manually:
 
